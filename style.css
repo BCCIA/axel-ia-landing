@@ -1,0 +1,494 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+:root {
+  --first-color: #1f65c2;
+  --black-color: #000;
+  --white-color: #fff;
+
+  --body-font: "Poppins", sans-serif;
+  --h1-font-size: 2.5rem;
+  --h2-font-size: 1rem;
+  --normal-font-size: 0.93rem;
+  --small-font-size: 0.81rem;
+
+  --z-back: -10;
+  --z-normal: 1;
+  --z-tooltip: 10;
+  --z-fixed: 100;
+  --z-modal: 1000;
+
+  --header-height: 3rem;
+  --font-bold: 700;
+}
+
+*,
+::before,
+::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style: none;
+}
+
+body {
+  font-family: var(--body-font);
+  background-color: var(--black-color); /* fallback si no carga el bg */
+  color: var(--white-color);
+  font-weight: var(--font-bold);
+  overflow: hidden;
+}
+
+#chat-container {
+  width: 60%;
+  max-width: 800px;
+  height: calc(90vh - 60px);
+  position: relative;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#chat-container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.45);
+}
+
+.iframe-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  width: 100%;
+}
+
+.did-chat-iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.bd-grid {
+  max-width: 1200px;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.l-header {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: var(--z-fixed);
+  background-color: var(--black-color);
+}
+
+.nav {
+  height: var(--header-height);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: var(--font-bold);
+}
+
+.nav-list {
+  text-align: center;
+}
+
+.nav-item {
+  margin-bottom: 2rem;
+}
+
+.nav-link {
+  color: var(--white-color);
+}
+
+.nav-link:hover::after {
+  position: absolute;
+  content: "";
+  width: 1.5rem;
+  height: 0.1875rem;
+  left: 0.125rem;
+  top: 2.125rem;
+  background-color: var(--first-color);
+}
+
+.nav-logo {
+  font-size: var(--normal-font-size);
+  color: var(--white-color);
+}
+
+.nav-logo span {
+  color: blue;
+}
+
+.nav-toggle {
+  cursor: pointer;
+  font-size: 1.5rem;
+}
+
+/* === IMPORTANTE: transparente para que se vea el fondo tecnológico === */
+.l-main {
+  height: calc(100vh - var(--header-height));
+  background-color: transparent; /* antes: var(--black-color) */
+}
+
+.home {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: max-content max-content;
+  align-content: space-around;
+  row-gap: 0rem;
+  height: 100%;
+  font-weight: var(--font-bold);
+  background: transparent;           /* elimina cualquier fondo */
+  backdrop-filter: none;             /* evita oscurecimiento */
+}
+
+.home-information {
+  padding-left: 1.5rem;
+  border-left: 5px solid var(--white-color);
+  z-index: var(--z-tooltip);
+  background: transparent;           /* por si venía con color en otra hoja */
+}
+
+.home-pressent {
+  font-size: var(--small-font-size);
+  background: transparent;
+}
+
+.home-title {
+  font-size: var(--h1-font-size);
+  background: transparent;
+  /* Realce sutil para legibilidad sobre fondos dinámicos */
+  text-shadow: 0 0 8px rgba(0, 160, 255, 0.45);
+}
+
+.home-skill {
+  font-size: var(--h2-font-size);
+}
+
+.home-button {
+  display: inline-block;
+  margin-top: 1.5rem;
+  font-size: 0.75rem;
+  color: var(--white-color);
+  padding: 0.625rem 1rem;
+  border-radius: 0.25rem;
+  background-image: linear-gradient(
+    to right,
+    var(--black-color),
+    var(--first-color)
+  );
+}
+
+.header,
+.footer {
+  height: 7%;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(8px);
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  font-weight: 500;
+  color: #333;
+}
+
+.header {
+  top: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 20px 20px 0 0;
+}
+
+.footer {
+  bottom: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 0 0 20px 20px;
+}
+
+.home-img {
+  position: absolute;
+  right: 20%;
+  bottom: 80px;
+  width: 50%;
+  z-index: var(--z-normal);
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.home-social {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 1rem;
+}
+
+.home-social-icon {
+  margin-bottom: 2rem;
+  font-size: 1.33rem;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.home-social-icon:hover {
+  color: var(--first-color);
+}
+
+/* === Overlays: se mantienen para animaciones pero no tapan ni bloquean === */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: var(--z-modal);
+  background: transparent !important; /* antes tenían color */
+  pointer-events: none;               /* no interceptan clics */
+}
+
+.first { left: 0; }
+.second { left: 33.3%; }
+.third { left: 66.6%; }
+
+@media screen and (max-width: 1200px) {
+  .home-img {
+    right: 3%;
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .nav-menu {
+    position: fixed;
+    top: -100%;
+    left: 0;
+    background-image: linear-gradient(var(--black-color), var(--first-color));
+    width: 100%;
+    height: 35%;
+    padding: 1.5rem;
+    border-radius: 0 0 1rem 1rem;
+    transition: 0.5s;
+  }
+
+  .show {
+    top: var(--header-height);
+  }
+
+  #chat-container {
+    height: 80vh;
+    margin: 0;
+    width: 100%;
+  }
+
+  .home-img {
+    position: initial;
+    width: 100%;
+  }
+
+  .home-social {
+    display: none;
+  }
+
+  html,
+  body {
+    padding: 0px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin-top: 5px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  :root {
+    --h1-font-size: 4.5rem;
+    --h2-font-size: 2rem;
+    --normal-font-size: 1rem;
+    --small-font-size: 1.37rem;
+  }
+
+  body {
+    margin: 0;
+  }
+
+  .l-main {
+    height: 100vh;
+  }
+
+  .nav {
+    height: calc(var(--header-height) + 1rem);
+  }
+
+  .nav.bd-grid {
+    padding: 1rem;
+  }
+
+  .nav-list {
+    display: flex;
+    padding-top: 0;
+  }
+
+  .nav-item {
+    margin-left: 3rem;
+    margin-bottom: 0;
+  }
+
+  .nav-toggle {
+    display: none;
+  }
+
+  .home {
+    grid-template-rows: max-content 20px;
+    align-content: center;
+  }
+
+  .home-information {
+    margin-top: 2rem;
+  }
+
+  .home-social {
+    flex-direction: row;
+    padding-top: 8rem;
+    padding-bottom: 0;
+  }
+
+  .home-social-icon {
+    margin-right: 2rem;
+    margin-bottom: 0;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .bd-grid {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+#refresh-btn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  font-size: 36px;
+  color: white;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 9999;
+  opacity: 0.6;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+#refresh-btn:hover {
+  opacity: 1;
+  transform: rotate(20deg);
+}
+
+/* ===== Fondo tecnológico (video o canvas) ===== */
+.tech-bg {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-back); /* por debajo de todo */
+  overflow: hidden;
+  pointer-events: none;
+}
+
+#bg-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(1.2) hue-rotate(190deg) brightness(0.8);
+}
+
+#net-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Halo sutil para sensación de profundidad */
+.tech-glow {
+  position: absolute;
+  inset: -20%;
+  background: radial-gradient(60% 60% at 50% 50%,
+    rgba(0, 119, 255, 0.15) 0%,
+    rgba(0, 119, 255, 0.06) 30%,
+    rgba(0, 0, 0, 0) 70%);
+  mix-blend-mode: screen;
+  filter: blur(20px);
+}
+
+/* Vidrio del contenedor del chat: look Axel */
+#chat-container {
+  backdrop-filter: blur(14px);
+  background: rgba(15, 20, 35, 0.35);
+  border: 1px solid rgba(120, 180, 255, 0.25);
+  box-shadow: 0 8px 40px rgba(0, 120, 255, 0.25);
+}
+
+/* Respeta usuarios con “reduce motion” */
+@media (prefers-reduced-motion: reduce) {
+  #bg-video { animation: none !important; }
+  #net-bg { display: none !important; }
+  .tech-glow { display: none !important; }
+}
+
+/* ====== FIX MÓVIL / VERTICAL: evitar "doble ventana" ====== */
+
+/* El iframe hereda el radio y cubre 100% del contenedor */
+#chat-container,
+.iframe-wrapper,
+.did-chat-iframe {
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.iframe-wrapper { top: 0; bottom: 0; }
+.did-chat-iframe { height: 100%; }
+
+/* En móvil ocultamos header/footer internos del widget */
+@media (max-width: 768px), (orientation: portrait) {
+  /* Si existen barras internas en tu UI, escóndelas en móvil */
+  #chat-container .header,
+  #chat-container .footer {
+    display: none !important;
+  }
+
+  /* Altura estable y sin “huecos” debajo del iframe */
+  #chat-container {
+    height: 78vh;          /* ajusta si quieres más alto/bajo */
+    max-height: 820px;     /* seguridad en pantallas altas */
+  }
+
+  /* Evita que algo se superponga y parezca otra ventana */
+  #chat-container::before,
+  #chat-container::after {
+    content: none !important;
+  }
+}
+
+/* En cualquier vista, que nada “tape” el iframe dentro del contenedor */
+#chat-container * {
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+}

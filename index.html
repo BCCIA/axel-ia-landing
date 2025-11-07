@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gema</title>
+    <link rel="shortcut icon" href="./chat.png" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Fondo tecnológico -->
+    <div class="tech-bg" data-bg="network">
+      <!-- Opción VIDEO (si la usas, cambia data-bg a "video" y descomenta) -->
+      <!--
+      <video id="bg-video" autoplay muted loop playsinline preload="auto" poster="./fallback.jpg">
+        <source src="./bg-axel.mp4" type="video/mp4" />
+      </video>
+      -->
+      <!-- Opción LÍNEAS (canvas procedural) -->
+      <canvas id="net-bg"></canvas>
+      <div class="tech-glow"></div>
+    </div>
+
+    <!-- Overlays para intro GSAP (transparentes, solo animación) -->
+    <div class="overlay first"></div>
+    <div class="overlay second"></div>
+    <div class="overlay third"></div>
+
+    <!-- Contenido principal -->
+    <main class="l-main bd-grid">
+      <div class="home">
+        <div class="home-information">
+          <span class="home-pressent anime-text">Mi nombre es</span>
+          <h1 class="home-title anime-text">Simón.</h1>
+        </div>
+        <div class="home-img">
+          <div id="chat-container" class="fade-in"></div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Botón de refrescar -->
+    <ion-icon id="refresh-btn" name="refresh-circle-outline" title="Actualizar página"></ion-icon>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="main.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  </body>
+</html>
