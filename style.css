@@ -502,3 +502,7 @@ img {
   object-fit: cover;
   filter: none !important;   /* <- quita la rotación de tono */
 }
+/* --- FIX GitHub Pages: asegurar que el video quede visible --- */
+:root { --z-back: 0; }                 /* antes: -10 */
+.tech-bg { z-index: 0 !important; }    /* fondo por encima del body, pero debajo del contenido */
+#bg-video { filter: none !important; } /* evita tintes involuntarios */
